@@ -1,0 +1,479 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>CS 726 Project 1: Basic classification</title>
+<style type="text/css">
+<!--
+.style1 {
+font-style: italic;
+font-weight: bold;
+}
+-->
+</style>
+<link href="project.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<h2>CS 726 Project 1: Basic classification</h2>
+
+<h3>Table of Contents</h3>
+<ul>
+<li><a href="#intro">Introduction</a>
+<li><a href="#warmup">Warming Up to Classifiers</a>
+<li><a href="#dt">Decision Trees</a>
+<li><a href="#knn">Nearest Neighbors</a>
+<li><a href="#perc">Perceptrons</a>
+</ul>
+
+<h3><a name="intro">Introduction</a></h3>
+
+In this project, we will learn to predict whether students are likely
+  to take the Artificial Intelligence course (CS 421) or the Computer
+  Graphics course (CS 427) at UMD.  We will begin by writing some very
+  simple (and crummy!) predictors, just to help familiarize you with
+  our environment (which will be reused multiply throughout the
+  semester, so it will be good to get used to it now!).  We will then
+  move on to slightly more complex prediction models, such as decision
+  trees, the perceptron and linear classifiers trained with gradient
+  descent.  We will also look at how these models fare on different
+  types of problems, but there will be much more of that in project
+  2.<p/>
+
+<p>The code for this project consists of several Python files, some of
+which you will need to read and understand in order to complete the
+assignment, and some of which you can ignore. You can download all the
+code and supporting files (including this description) as
+a <a href="p1.tar.gz">tar archive</a>.
+
+<table border="0" cellpadding="10">
+  <tr><td colspan="2"><b>Files you'll edit:</b></td></tr>
+  
+  <tr><td><code>dumbClassifiers.py</code></td>
+  <td>This contains a handful of "warm up" classifiers to get you
+  used to our classification framework.</td></tr>
+  
+  <tr><td><code>dt.py</code></td>
+  <td>Will be your simple implementation of a decision tree classifier.</td></tr>
+  
+  <tr><td><code>knn.py</code></td>
+  <td>This is where your nearest-neighbor classifier implementation
+  will go.</td></tr>
+
+  <tr><td><code>perceptron.py</code></td>
+  <td>This is where your perceptron classifier implementation will
+  go.</td></tr>
+  
+  <tr><td colspan="2"><b>Files you might want to look at:</b></td></tr>
+  
+  <tr><td><code>binary.py</code></td>
+  <td>Our generic interface for binary classifiers (actually works for
+  regression and other types of classification, too).</td></tr>
+
+  <tr><td><code>datasets.py</code></td>
+  <td>Where a handful of test data sets are stored.</td></tr>
+
+  <tr><td><code>util.py</code></td>
+  <td>A handful of useful utility functions: these will undoubtedly
+  be helpful to you, so take a look!</td></tr>
+
+  <tr><td><code>runClassifier.py</code></td>
+  <td>A few wrappers for doing useful things with classifiers, like
+  training them, generating learning curves, etc.</td></tr>
+
+  <tr><td><code>mlGraphics.py</code></td>
+  <td>A few useful plotting commands</td></tr>
+
+</table>
+<p>
+<p><strong>What to submit:</strong> You
+  will <a href="http://www.cs.utah.edu/~hal/handin.pl?course=cmsc726">handin</a>
+  all of the python files listed above under "Files you'll edit" as
+  well as a <tt>partners.txt</tt> file that lists the <b>names</b>
+  and <b>uids</b> of all members in your team.  Finally, you'll hand
+  in a <tt>writeup.pdf</tt> file that answers all the written
+  questions in this assignment (denoted by <b>WU#:</b> in
+  this <tt>.html</tt> file).<p/>
+
+<p><strong>Evaluation:</strong> Your code will be autograded for
+technical correctness. Please <em>do not</em> change the names of any
+provided functions or classes within the code, or you will wreak havoc
+on the autograder. However, the correctness of your implementation --
+not the autograder's output -- will be the final judge of your score.
+If necessary, we will review and grade assignments individually to
+ensure that you receive due credit for your work.
+
+<p><strong>Academic Dishonesty:</strong> We will be checking your code
+against other submissions in the class for logical redundancy. If you
+copy someone else's code and submit it with minor changes, we will
+know. These cheat detectors are quite hard to fool, so please don't
+try. We trust you all to submit your own work only; <em>please</em>
+don't let us down. If you do, we will pursue the strongest
+consequences available to us.
+
+<p><strong>Getting Help:</strong> You are not alone!  If you find
+yourself stuck on something, contact the course staff for help.
+Office hours, class time, and Piazza are there for your support;
+please use them.  If you can't make our office hours, let us know and
+we will schedule more.  We want these projects to be rewarding and
+instructional, not frustrating and demoralizing.  But, we don't know
+when or how to help unless you ask.  One more piece of advice: if you
+don't know what a variable is, print it out.
+
+<h3><a name="warmup">Warming Up to Classifiers</a> <i>(10%)</i></h3>
+
+Let's begin our foray into classification by looking at some very
+simple classifiers.  There are three classifiers
+in <tt>dumbClassifiers.py</tt>, one is implemented for you, the other
+two you will need to fill in appropriately.<p/>
+
+The already implemented one is <tt>AlwaysPredictOne</tt>, a classifier
+that (as its name suggest) always predicts the positive class.  We're
+going to use the <tt>TennisData</tt> dataset from <tt>datasets.py</tt>
+as a running example.  So let's start up python and see how well this
+classifier does on this data.  You should begin by
+importing <tt>util</tt>, <tt>datasets</tt>, <tt>binary</tt>
+and <tt>dumbClassifiers</tt>.  Also, be sure you always have <tt>from
+  numpy import *</tt> and <tt>from pylab import *</tt> activated.<p/>
+
+<pre>
+>>> h = dumbClassifiers.AlwaysPredictOne({})
+>>> h
+AlwaysPredictOne
+>>> h.train(datasets.TennisData.X, datasets.TennisData.Y)
+>>> h.predictAll(datasets.TennisData.X)
+array([ 1.,  1.,  1.,  1.,  1.,  1.,  1.,  1.,  1.,  1.,  1.,  1.,  1.,  1.])
+</pre>
+
+Indeed, it looks like it's always predicting one!<p/>
+
+Now, let's compare these predictions to the truth.  Here's a very
+clever way to compute accuracies (<b>WU1:</b> why is this computation
+equivalent to computing classification accuracy?):
+
+<pre>
+>>> mean((datasets.TennisData.Y > 0) == (h.predictAll(datasets.TennisData.X) > 0))
+0.6428571428571429
+</pre>
+
+That's training accuracy; let's check test accuracy:
+
+<pre>
+>>> mean((datasets.TennisData.Yte > 0) == (h.predictAll(datasets.TennisData.Xte) > 0))
+0.5
+</pre>
+
+Okay, so it does pretty badly.  That's not surprising, it's really not
+learning anything!!!<p/>
+
+Now, let's use some of the built-in functionality to help do some of
+the grunt work for us.  You'll need to import <tt>runClassifier</tt>.
+
+<pre>
+>>> runClassifier.trainTestSet(h, datasets.TennisData)
+Training accuracy 0.642857, test accuracy 0.5
+</pre>
+
+Very convenient!<p/>
+
+Now, your first implementation task will be to implement the missing
+functionality in <tt>AlwaysPredictMostFrequent</tt>.  This actually
+will "learn" something simple.  Upon receiving training data, it will
+simply remember whether +1 is more common or -1 is more common.  It
+will then always predict this label for future data.  Once you've
+implemented this, you can test it:
+
+<pre>
+>>> h = dumbClassifiers.AlwaysPredictMostFrequent({})
+>>> runClassifier.trainTestSet(h, datasets.TennisData)
+Training accuracy 0.642857, test accuracy 0.5
+>>> h
+AlwaysPredictMostFrequent(1)
+</pre>
+
+Okay, so it does the same as <tt>AlwaysPredictOne</tt>, but that's
+because +1 is more common in that training data.  We can see a
+difference if we change to a different dataset: <tt>CFTookAI</tt> is a
+classification problem where we try to predict whether a student has
+taken AI based on the other classes they've taken.
+
+<pre>
+>>> runClassifier.trainTestSet(dumbClassifiers.AlwaysPredictOne({}), datasets.CFTookAI)
+Training accuracy 0.515, test accuracy 0.42
+>>> runClassifier.trainTestSet(dumbClassifiers.AlwaysPredictMostFrequent({}), datasets.CFTookAI)
+Training accuracy 0.515, test accuracy 0.42
+</pre>
+
+Since the majority class is "1", these do the same here.<p/>
+
+The last dumb classifier we'll implement
+is <tt>FirstFeatureClassifier</tt>.  This actually does something
+slightly non-trivial.  It looks at the first feature
+(i.e., <tt>X[0]</tt>) and uses this to make a prediction.  Based on
+the training data, it figures out what is the most common class for
+the case when <tt>X[0] > 0</tt> and the most common class for the case
+when <tt>X[0] <= 0</tt>.  Upon receiving a test point, it checks the
+value of <tt>X[0]</tt> and returns the corresponding class.  Once
+you've implemented this, you can check it's performance:
+
+<pre>
+>>> runClassifier.trainTestSet(dumbClassifiers.FirstFeatureClassifier({}), datasets.TennisData)
+Training accuracy 0.714286, test accuracy 0.666667
+>>> runClassifier.trainTestSet(dumbClassifiers.FirstFeatureClassifier({}), datasets.CFTookAI)
+Training accuracy 0.515, test accuracy 0.42
+>>> runClassifier.trainTestSet(dumbClassifiers.FirstFeatureClassifier({}), datasets.CFTookCG)
+Training accuracy 0.545, test accuracy 0.49
+</pre>
+
+(Here, <tt>CFTookCG</tt> is like <tt>CFTookAI</tt> but for computer
+graphics rather than artificial intelligence.)<p/>
+
+As we can see, this does better again on TennisData, but doesn't
+really help on AI.
+
+<h3><a name="dt">Decision Trees</a> <i>(40%)</i></h3>
+
+Our next task is to implement a decision tree classifier.  There is
+stub code in <tt>dt.py</tt> that you should edit.  Decision trees are
+stored as simple data structures.  Each node in the tree has
+a <tt>.isLeaf</tt> boolean that tells us if this node is a leaf (as
+opposed to an internal node).  Leaf nodes have a <tt>.label</tt> field
+that says what class to return at this leaf.  Internal nodes have:
+a <tt>.feature</tt> value that tells us what feature to split on;
+a <tt>.left</tt> <i>tree</i> that tells us what to do when the feature
+value is <i>less than 0.5</i>; and a <tt>.right</tt> <i>tree</i> that
+tells us what to do when the feature value is <i>at least 0.5</i>.
+To get a sense of how the data structure works, look at
+the <tt>displayTree</tt> function that prints out a tree.<p/>
+
+Your first task is to implement the training procedure for decision
+trees.  We've provided a fair amount of the code, which should help
+you guard against corner cases.  (Hint: take a look
+at <tt>util.py</tt> for some useful functions for implementing
+training.  Once you've implemented the training function, we can test
+it on simple data:<p/>
+
+<pre>
+>>> h = dt.DT({'maxDepth': 1})
+>>> h
+Leaf 1
+
+>>> h.train(datasets.TennisData.X, datasets.TennisData.Y)
+>>> h
+Branch 6
+  Leaf 1.0
+  Leaf -1.0
+</pre>
+
+This is for a simple depth-one decision tree (aka a decision stump).
+If we let it get deeper, we get things like:
+
+<pre>
+>>> h = dt.DT({'maxDepth': 2})
+>>> h.train(datasets.TennisData.X, datasets.TennisData.Y)
+>>> h
+Branch 6
+  Branch 7
+    Leaf 1.0
+    Leaf 1.0
+  Branch 1
+    Leaf -1.0
+    Leaf 1.0
+
+>>> h = dt.DT({'maxDepth': 5})
+>>> h.train(datasets.TennisData.X, datasets.TennisData.Y)
+>>> h
+Branch 6
+  Branch 7
+    Leaf 1.0
+    Branch 2
+      Leaf 1.0
+      Leaf -1.0
+  Branch 1
+    Branch 7
+      Branch 2
+        Leaf -1.0
+        Leaf 1.0
+      Leaf -1.0
+    Leaf 1.0
+</pre>
+
+Now, you should go implement prediction.  This should be easier than
+training!  We can test by:
+
+<pre>
+>>> runClassifier.trainTestSet(dt.DT({'maxDepth': 1}), datasets.TennisData)
+Training accuracy 0.714286, test accuracy 1
+>>> runClassifier.trainTestSet(dt.DT({'maxDepth': 2}), datasets.TennisData)
+Training accuracy 0.857143, test accuracy 1
+>>> runClassifier.trainTestSet(dt.DT({'maxDepth': 3}), datasets.TennisData)
+Training accuracy 0.928571, test accuracy 1
+>>> runClassifier.trainTestSet(dt.DT({'maxDepth': 5}), datasets.TennisData)
+Training accuracy 1, test accuracy 1
+</pre>
+
+Now, let's see how well this does on our (computer graphics) recommender data:
+
+<pre>
+>>> runClassifier.trainTestSet(dt.DT({'maxDepth': 1}), datasets.CFTookCG)
+Training accuracy 0.56, test accuracy 0.48
+>>> runClassifier.trainTestSet(dt.DT({'maxDepth': 3}), datasets.CFTookCG)
+Training accuracy 0.6325, test accuracy 0.5
+>>> runClassifier.trainTestSet(dt.DT({'maxDepth': 5}), datasets.CFTookCG)
+Training accuracy 0.7475, test accuracy 0.6
+</pre>
+
+Looks like it does better than the dumb classifiers on training data,
+as well as on test data!  Hopefully we can do even better in the
+future!<p/>
+
+We can use more <tt>runClassifier</tt> functions to generate learning
+curves and hyperparameter curves:
+
+<pre>
+>>> curve = runClassifier.learningCurveSet(dt.DT({'maxDepth': 5}), datasets.CFTookAI)
+[snip]
+>>> runClassifier.plotCurve('DT on AI', curve)
+</pre>
+
+This plots training and test accuracy as a function of the number of
+data points (x-axis) used for training.
+
+<b>WU2:</b> We should see training accuracy (roughly) going down and
+test accuracy (roughly) going up.  Why does training accuracy tend to
+go <i>down?</i>  Why is test accuracy not monotonically
+increasing?<p/>
+
+We can also generate similar curves by chaning the maximum depth
+hyperparameter:
+
+<pre>
+>>> curve = runClassifier.hyperparamCurveSet(dt.DT({'maxDepth': 5}), 'maxDepth', [1,2,3,4,5,6,7,8,9,10], datasets.CFTookAI)
+[snip]
+>>> runClassifier.plotCurve('DT on AI (hyperparameter)', curve)
+</pre>
+
+Now, the x-axis is the value of the maximum depth.<p/>
+
+<b>WU3:</b> You should see training accuracy monotonically increasing
+and test accuracy making a (wavy) hill.  Which of these
+is <i>guaranteed</i> to happen a which is just something we might
+expect to happen?  Why?<p/>
+
+<b>WU4:</b> Train a decision tree on the CG data with a maximum depth
+of 3.  If you look in <tt>datasets.CFTookCG.courseIds</tt>
+and <tt>.courseNames</tt> you'll find the corresponding course for
+each feature.  The first feature is a constant-one "bias" feature.
+Draw out the decision tree for this classifier, but put in the actual
+course names/ids as the features.  Interpret this tree: do these
+courses seem like they are actually indicative of whether someone
+might take CG?<p/>
+
+<h3><a name="knn">Nearest Neighbors <i>(30%)</i></a></h3>
+
+To get started with geometry-based classification, we will implement a
+nearest neighbor classifier that supports both KNN classification and
+epsilon-ball classification.  This should go in <tt>knn.py</tt>.  The
+only function here that you have to do anything about is
+the <tt>predict</tt> function, which does all the work.<p/>
+
+In order to test your implementation, here are some outputs (I suggest
+implementing epsilon-balls first, since they're slightly easier):
+
+<pre>
+>>> runClassifier.trainTestSet(knn.KNN({'isKNN': False, 'eps': 0.5}), datasets.TennisData)
+Training accuracy 1, test accuracy 1
+>>> runClassifier.trainTestSet(knn.KNN({'isKNN': False, 'eps': 1.0}), datasets.TennisData)
+Training accuracy 0.857143, test accuracy 0.833333
+>>> runClassifier.trainTestSet(knn.KNN({'isKNN': False, 'eps': 2.0}), datasets.TennisData)
+Training accuracy 0.642857, test accuracy 0.5
+
+>>> runClassifier.trainTestSet(knn.KNN({'isKNN': True, 'K': 1}), datasets.TennisData)
+Training accuracy 1, test accuracy 1
+>>> runClassifier.trainTestSet(knn.KNN({'isKNN': True, 'K': 3}), datasets.TennisData)
+Training accuracy 0.785714, test accuracy 0.833333
+>>> runClassifier.trainTestSet(knn.KNN({'isKNN': True, 'K': 5}), datasets.TennisData)
+Training accuracy 0.857143, test accuracy 0.833333
+</pre>
+
+You can also try it on the course-recommender data:
+
+<pre>
+>>> runClassifier.trainTestSet(knn.KNN({'isKNN': False, 'eps': 1.0}), datasets.CFTookAI)
+Training accuracy 1, test accuracy 0.42
+>>> runClassifier.trainTestSet(knn.KNN({'isKNN': False, 'eps': 5.0}), datasets.CFTookAI)
+Training accuracy 0.5475, test accuracy 0.55
+>>> runClassifier.trainTestSet(knn.KNN({'isKNN': False, 'eps': 10.0}), datasets.CFTookAI)
+Training accuracy 0.515, test accuracy 0.42
+
+>>> runClassifier.trainTestSet(knn.KNN({'isKNN': True, 'K': 1}), datasets.CFTookAI)
+Training accuracy 1, test accuracy 0.51
+>>> runClassifier.trainTestSet(knn.KNN({'isKNN': True, 'K': 3}), datasets.CFTookAI)
+Training accuracy 0.765, test accuracy 0.57
+>>> runClassifier.trainTestSet(knn.KNN({'isKNN': True, 'K': 5}), datasets.CFTookAI)
+Training accuracy 0.6825, test accuracy 0.61
+</pre>
+
+<b>WU5:</b> For the course recommender data, generate train/test
+curves for varying values of K and epsilon (you figure out what are
+good ranges, this time).  Include those curves: do you see evidence of
+overfitting and underfitting?  Next, using K=5, generate learning
+curves for this data.<p/>
+
+
+<h3><a name="perc">Percepton</a> <i>(20%)</i></h3>
+
+The last implementation you have is for the perceptron;
+see <tt>perceptron.py</tt> where you will have to implement part of
+the <tt>nextExample</tt> function to make a perceptron-style
+update.<p/>
+
+Once you've implemented this, the magic in the <tt>Binary</tt> class
+will handle training on datasets for you, as long as you specify the
+number of epochs (passes over the training data) to run:<p/>
+
+<pre>
+>>> runClassifier.trainTestSet(perceptron.Perceptron({'numEpoch': 1}), datasets.TennisData)
+Training accuracy 0.642857, test accuracy 0.666667
+>>> runClassifier.trainTestSet(perceptron.Perceptron({'numEpoch': 2}), datasets.TennisData)
+Training accuracy 0.857143, test accuracy 1
+</pre>
+
+You can view its predictions on the two dimensional data sets:
+
+<pre>
+>>> runClassifier.plotData(datasets.TwoDDiagonal.X, datasets.TwoDDiagonal.Y)
+>>> h = perceptron.Perceptron({'numEpoch': 200})
+>>> h.train(datasets.TwoDDiagonal.X, datasets.TwoDDiagonal.Y)
+>>> h
+w=array([  7.3,  18.9]), b=0.0
+>>> runClassifier.plotClassifier(array([ 7.3, 18.9]), 0.0)
+</pre>
+
+You should see a linear separator that does a pretty good (but not
+perfect!) job classifying this data.<p/>
+
+Finally, we can try it on the AI data:<p/>
+
+<pre>
+>>> runClassifier.trainTestSet(perceptron.Perceptron({'numEpoch': 1}), datasets.CFTookAI)
+Training accuracy 0.585, test accuracy 0.59
+>>> runClassifier.trainTestSet(perceptron.Perceptron({'numEpoch': 2}), datasets.CFTookAI)
+Training accuracy 0.6125, test accuracy 0.5
+</pre>
+
+<b>WU6:</b> Take the <i>best</i> perceptron you've been able to find
+  so far on the AI data.  Look at the top five positive weights (those
+  with highest value) and top five negative weights (those with lowest
+  value).  Which features do these correspond to?  Can you explain why
+  these might get these features as the "most indicative"?  Why is it
+  hard to interpret "large weight" as "most indicative"?  How do these
+  large weighted features compare to the features selected by the
+  decision tree?
+</ol>
+
+
+</body>
+</html>
