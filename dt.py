@@ -9,6 +9,7 @@ from numpy import *
 
 from binary import *
 import util
+import pdb
 
 class DT(BinaryClassifier):
     """
@@ -63,27 +64,24 @@ class DT(BinaryClassifier):
         at 0.5, so <0.5 means left branch and >=0.5 means right
         branch.
         """
-
-        ### TODO: YOUR CODE HERE
-        util.raiseNotDefined()
+        if self.isLeaf: return repr(self.label)
+        else: 
+            if X[self.feature] < 0.5: return self.left.predict(X) 
+            else: return self.right.predict(X)
 
     def trainDT(self, X, Y, maxDepth, used):
         """
         recursively build the decision tree
         """
-
         # get the size of the data set
         N,D = X.shape
-
         # check to see if we're either out of depth or no longer
         # have any decisions to make
         if maxDepth <= 0 or len(util.uniq(Y)) <= 1:
             # we'd better end at this point.  need to figure
             # out the label to return
-            self.isLeaf = util.raiseNotDefined()    ### TODO: YOUR CODE HERE
-
-            self.label  = util.raiseNotDefined()    ### TODO: YOUR CODE HERE
-
+            self.isLeaf = True
+            self.label  = util.mode(Y);
 
         else:
             # we need to find a feature to split on
@@ -96,16 +94,13 @@ class DT(BinaryClassifier):
 
                 # suppose we split on this feature; what labels
                 # would go left and right?
-                leftY  = util.raiseNotDefined()    ### TODO: YOUR CODE HERE
 
-                rightY = util.raiseNotDefined()    ### TODO: YOUR CODE HERE
-
-
+                leftY  = Y[X[:, d] < 0.5]
+                rightY = Y[X[:, d] >= 0.5]
                 # we'll classify the left points as their most
                 # common class and ditto right points.  our error
                 # is the how many are not their mode.
-                error = util.raiseNotDefined()    ### TODO: YOUR CODE HERE
-
+                error = size((leftY!=util.mode(leftY)).nonzero()) + size((rightY!=util.mode(rightY)).nonzero())
 
                 # check to see if this is a better error rate
                 if error <= bestError:
@@ -118,10 +113,8 @@ class DT(BinaryClassifier):
                 self.label  = util.mode(Y)
 
             else:
-                self.isLeaf  = util.raiseNotDefined()    ### TODO: YOUR CODE HERE
-
-                self.feature = util.raiseNotDefined()    ### TODO: YOUR CODE HERE
-
+                self.isLeaf  = False;
+                self.feature = bestFeature;
 
                 self.left  = DT({'maxDepth': maxDepth-1})
                 self.right = DT({'maxDepth': maxDepth-1})
@@ -130,8 +123,20 @@ class DT(BinaryClassifier):
                 # and
                 #   self.right.trainDT(...) 
                 # with appropriate arguments
-                ### TODO: YOUR CODE HERE
-                util.raiseNotDefined()
+                leftD = X[X[:, self.feature] < 0.5]
+                rightD = X[X[:, self.feature] >= 0.5]
+                # redefine labels with the best feature
+                leftY = Y[X[:, self.feature] < 0.5]
+                rightY = Y[X[:, self.feature] >= 0.5]
+                used = used + [self.feature]
+                # print "best feature found is ", self.feature
+                # print "updated used:", used, " maxDepth:", self.left.opts['maxDepth']
+                # print "leftY:", leftY
+                # print "rightY:", rightY
+#                pdb.set_trace()
+                self.left.trainDT(leftD, leftY, self.left.opts['maxDepth'], used);
+ 
+                self.right.trainDT(rightD, rightY, self.right.opts['maxDepth'], used);
 
     def train(self, X, Y):
         """
@@ -140,22 +145,18 @@ class DT(BinaryClassifier):
         N-length vector of +1/-1 entries.
 
         Some hints/suggestions:
-          - make sure you don't build the tree deeper than self.opts['maxDepth']
-          
+          - make sure you don't build the tree deeper than self.opts['maxDepth']          
           - make sure you don't try to reuse features (this could lead
             to very deep trees that keep splitting on the same feature
-            over and over again)
-            
+            over and over again)            
           - it is very useful to be able to 'split' matrices and vectors:
             if you want the ids for all the Xs for which the 5th feature is
             on, say X(:,5)>=0.5.  If you want the corresponting classes,
             say Y(X(:,5)>=0.5) and if you want the correspnding rows of X,
-            say X(X(:,5)>=0.5,:)
-            
+            say X(X(:,5)>=0.5,:)            
           - i suggest having train() just call a second function that
             takes additional arguments telling us how much more depth we
             have left and what features we've used already
-
           - take a look at the 'mode' and 'uniq' functions in util.py
         """
 

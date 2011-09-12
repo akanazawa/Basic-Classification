@@ -105,6 +105,6 @@ class FirstFeatureClassifier(BinaryClassifier):
         # in matlab: mode(Y(find(X)))
         self.classForPos = util.mode(Y[X[:, 0].nonzero()]);
         # similarly, mode(Y(find(~X)))
-        self.classForNeg = util.mode(Y[(X[:,0]==0).nonzero()]);
+        self.classForNeg = util.mode(Y[(X[:,0]==0)]);
                 
 
