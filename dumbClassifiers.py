@@ -9,6 +9,7 @@ from binary import *
 from numpy  import *
 
 import util
+import pdb
 
 class AlwaysPredictOne(BinaryClassifier):
     """
@@ -58,16 +59,15 @@ class AlwaysPredictMostFrequent(BinaryClassifier):
         X is an vector and we want to make a single prediction: Just
         return the most frequent class!
         """
-        ### TODO: YOUR CODE HERE
-        util.raiseNotDefined()
+        
+        return self.mostFrequentClass
 
     def train(self, X, Y):
         '''
         just figure out what the most frequent class is and store it in self.mostFrequentClass
         '''
+        self.mostFrequentClass = util.mode(Y)
 
-        ### TODO: YOUR CODE HERE
-        util.raiseNotDefined()
 
 class FirstFeatureClassifier(BinaryClassifier):
     """
@@ -81,8 +81,8 @@ class FirstFeatureClassifier(BinaryClassifier):
         """
         if we haven't been trained, always return 1
         """
-        self.classForPos = 1    # what class should we return if X[0] >  0
-        self.classForNeg = 1    # what class should we return if X[0] <= 0
+        self.classForPos = 0    # what class should we return if X[0] >  0
+        self.classForNeg = 0    # what class should we return if X[0] <= 0
 
     def online(self):
         return False
@@ -94,14 +94,17 @@ class FirstFeatureClassifier(BinaryClassifier):
         """
         check the first feature and make a classification decision based on it
         """
-
-        ### TODO: YOUR CODE HERE
-        util.raiseNotDefined()
+        return self.classForPos if X[0] else self.classForNeg
 
     def train(self, X, Y):
         '''
         just figure out what the most frequent class is for each value of X[:,0] and store it
+        Add val for each, since classes are +1/-1, if the result is positive that means there were more 1's than -1's.
         '''
 
-        ### TODO: YOUR CODE HERE
-        util.raiseNotDefined()
+        # in matlab: mode(Y(find(X)))
+        self.classForPos = util.mode(Y[X[:, 0].nonzero()]);
+        # similarly, mode(Y(find(~X)))
+        self.classForNeg = util.mode(Y[(X[:,0]==0).nonzero()]);
+                
+
