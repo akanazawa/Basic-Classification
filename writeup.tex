@@ -1,0 +1,51 @@
+\documentclass[a4paper]{article}
+\begin{document}
+\title{ML CS726 Fall'11 Project 1 Basic Classifiers}
+\author{Angjoo Kanazawa, Ran Liu, Austin Myers}
+\maketitle
+
+\begin{document}
+\section{Writeup}
+\subsection{Warm up}
+WU1:why is this computation equivalent to computing classification
+accuracy?
+\subsection{Decision Tree}
+WU2: We should see training accuracy (roughly) going down and
+test accuracy (roughly) going up.  Why does training accuracy tend to
+go down?  Why is test accuracy not monotonically
+increasing?
+
+<bWU3:</b You should see training accuracy monotonically increasing
+and test accuracy making a (wavy) hill.  Which of these
+is guaranteed to happen a which is just something we might
+expect to happen?  Why?
+
+<bWU4:</b Train a decision tree on the CG data with a maximum depth
+of 3.  If you look in <ttdatasets.CFTookCG.courseIds</tt
+and \texttt{courseNames} you'll find the corresponding course for
+each feature.  The first feature is a constant-one "bias" feature.
+Draw out the decision tree for this classifier, but put in the actual
+course names/ids as the features.  Interpret this tree: do these
+courses seem like they are actually indicative of whether someone
+might take CG?
+
+\subsection{KNN}
+WU5: For the course recommender data, generate train/test
+curves for varying values of K and epsilon (you figure out what are
+good ranges, this time).  Include those curves: do you see evidence of
+overfitting and underfitting?  Next, using K=5, generate learning
+curves for this data.
+
+
+\subsection{Perceptron}
+WU6: Take the best perceptron you've been able to find
+  so far on the AI data.  Look at the top five positive weights (those
+  with highest value) and top five negative weights (those with lowest
+  value).  Which features do these correspond to?  Can you explain why
+  these might get these features as the "most indicative"?  Why is it
+  hard to interpret "large weight" as "most indicative"?  How do these
+  large weighted features compare to the features selected by the
+  decision tree?
+
+
+\end{document}
