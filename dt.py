@@ -54,10 +54,10 @@ class DT(BinaryClassifier):
         if self.isLeaf:
             return (" " * (depth*2)) + "Leaf " + repr(self.label) + "\n"
         else:
-            return (" " * (depth*2)) + "Branch " + repr(self.feature) + "\n" + \
+            return (" " * (depth*2)) + "Branch " + repr(self.feature) + " Depth:"+str(depth)+"\n" + \
                       self.left.displayTree(depth+1) + \
                       self.right.displayTree(depth+1)
-
+            
     def predict(self, X):
         """
         Traverse the tree to make predictions.  You should threshold X
