@@ -4,24 +4,41 @@
 \author{Angjoo Kanazawa, Ran Liu, Austin Myers}
 \maketitle
 
-\begin{document}
+
 \section{Writeup}
 \subsection{Warm up}
-WU1:why is this computation equivalent to computing classification
+\textbf{WU1}:why is this computation equivalent to computing classification
 accuracy?
 \subsection{Decision Tree}
-WU2: We should see training accuracy (roughly) going down and
+\textbf{WU2}: We should see training accuracy (roughly) going down and
 test accuracy (roughly) going up.  Why does training accuracy tend to
 go down?  Why is test accuracy not monotonically
-increasing?
+increasing?\\
+Training accuracy tends to go down because we're training the
+algorithm on that data with answers. The design of the tree is s.t. we
+minimize the training error. However the test accuracy is not
+monotonically increasing because there maybe examples that the
+algoirthm is not ready for. In another words the more the accuracy
+goes up on the training set the more algorithm will overfit on that
+specific training set and thus not generalize well to the unseen test set.
 
-<bWU3:</b You should see training accuracy monotonically increasing
+\textbf{WU3:} You should see training accuracy monotonically increasing
 and test accuracy making a (wavy) hill.  Which of these
 is guaranteed to happen a which is just something we might
-expect to happen?  Why?
+expect to happen?  Why?\\
+We can guarantee that the training accuracy will monotonically
+increase. This is because the deeper we go, the better our tree will
+fit the training data. By construction when the tree is complete as
+long as the training set is consistent we will have 0 error. We should
+expect the test set to make a wavy hill because we can't gurantee that
+our training set is representative of the test set, or the entire
+distribution datasets are taken from. So if we overfit it will go up,
+but we might focus on the right feature, or hope to do so, to increase
+the accuracy on the test set. But we can never guarantee that the
+accuracy of the test set will monotonically increase.
 
-<bWU4:</b Train a decision tree on the CG data with a maximum depth
-of 3.  If you look in <ttdatasets.CFTookCG.courseIds</tt
+\textbf{WU4}: Train a decision tree on the CG data with a maximum depth
+of 3.  If you look in \texttt{datasets.CFTookCG.courseIds}
 and \texttt{courseNames} you'll find the corresponding course for
 each feature.  The first feature is a constant-one "bias" feature.
 Draw out the decision tree for this classifier, but put in the actual
@@ -30,7 +47,7 @@ courses seem like they are actually indicative of whether someone
 might take CG?
 
 \subsection{KNN}
-WU5: For the course recommender data, generate train/test
+\textbf{WU5:} For the course recommender data, generate train/test
 curves for varying values of K and epsilon (you figure out what are
 good ranges, this time).  Include those curves: do you see evidence of
 overfitting and underfitting?  Next, using K=5, generate learning
@@ -38,7 +55,7 @@ curves for this data.
 
 
 \subsection{Perceptron}
-WU6: Take the best perceptron you've been able to find
+\textbf{WU6:} Take the best perceptron you've been able to find
   so far on the AI data.  Look at the top five positive weights (those
   with highest value) and top five negative weights (those with lowest
   value).  Which features do these correspond to?  Can you explain why
