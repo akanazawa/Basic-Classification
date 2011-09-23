@@ -29,7 +29,7 @@ bestWith5_courses = datasets.CFTookAI.courseNames[top5With5]
       #  'computational linguistics ii', 'advanced computer graphics'], 
       # dtype='|S62')
 worst5With5 = [53,36,24,18,7]; #reading the first depth 4 feature breadth wise
-worstWith5_coures = datasets.CFTookAI.courseNames[worstWith5]
+worstWith5_coures = datasets.CFTookAI.courseNames[worst5With5]
 #array(['computational geometry', 'analysis of algorithms',
       #  'computer graphics', 'computer and network security',
       #  'introduction to low-level programming concepts'], 
@@ -316,6 +316,12 @@ worstWith10_coures = datasets.CFTookAI.courseNames[worst5With10]
 #                 Leaf -1.0
 #               Leaf 1.0
 
+# for wu 4
+CGDT = dt.DT({'maxDepth': 3})
+CGDT.train(datasets.CFTookCG.X, datasets.CFTookCG.Y)
+
+
+
 # ----- for KNN.py -----
 # import knn
 # # eps ball
@@ -342,25 +348,25 @@ worstWith10_coures = datasets.CFTookAI.courseNames[worst5With10]
 # runClassifier.plotCurve('KNN on AI: K=5', learningCurve)
 
 # # ----- Perceptron -----
-# import perceptron
-# epoch = 1;
+import perceptron
+epoch = 1;
 
-# runClassifier.trainTestSet(perceptron.Perceptron({'numEpoch':epoch}), datasets.TennisData)
+runClassifier.trainTestSet(perceptron.Perceptron({'numEpoch':epoch}), datasets.TennisData)
 
-# runClassifier.plotData(datasets.TwoDDiagonal.X, datasets.TwoDDiagonal.Y)
-# h = perceptron.Perceptron({'numEpoch':200})
-# h.train(datasets.TwoDDiagonal.X, datasets.TwoDDiagonal.Y)
-# runClassifier.plotClassifier(array([7.3, 18.9]), 0.0)
+runClassifier.plotData(datasets.TwoDDiagonal.X, datasets.TwoDDiagonal.Y)
+h = perceptron.Perceptron({'numEpoch':200})
+h.train(datasets.TwoDDiagonal.X, datasets.TwoDDiagonal.Y)
+runClassifier.plotClassifier(array([7.3, 18.9]), 0.0)
 
-# runClassifier.trainTestSet(perceptron.Perceptron({'numEpoch':epoch}), datasets.CFTookAI)
+runClassifier.trainTestSet(perceptron.Perceptron({'numEpoch':epoch}), datasets.CFTookAI)
 
-# epoches = arange(1,300,10)
-# curveP = runClassifier.hyperparamCurveSet(h, 'numEpoch', epoches, datasets.CFTookAI)
-# runClassifier.plotCurve('Perceptron on AI:#epoch=1:10:300', curveP);
+epoches = arange(1,300,10)
+curveP = runClassifier.hyperparamCurveSet(h, 'numEpoch', epoches, datasets.CFTookAI)
+runClassifier.plotCurve('Perceptron on AI:#epoch=1:10:300', curveP);
 
-# bestSoFar_ind = curveP[1].argmax();
-# bestP = perceptron.Perceptron({'numEpoch':epoches[bestSoFar_ind]});
-# bestP.train(datasets.CFTookAI.X, datasets.CFTookAI.Y)
+bestSoFar_ind = curveP[1].argmax();
+bestP = perceptron.Perceptron({'numEpoch':epoches[bestSoFar_ind]});
+bestP.train(datasets.CFTookAI.X, datasets.CFTookAI.Y)
 
 # sorted_i = bestP.weights.argsort()
 # bestW_inds = sorted_i[-5:]
