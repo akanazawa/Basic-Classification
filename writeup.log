@@ -1,8 +1,12 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2011.9.14)  23 SEP 2011 15:43
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.9.14)  26 SEP 2011 11:02
 entering extended mode
  %&-line parsing enabled.
-**\input writeup.tex
-(./writeup.tex (/usr/share/texmf-texlive/tex/latex/base/article.cls
+**writeup.tex
+(./writeup.tex
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, loaded.
+(/usr/share/texmf-texlive/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/share/texmf-texlive/tex/latex/base/size11.clo
 File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
@@ -18,57 +22,193 @@ File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
+)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/keyval.sty
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(/usr/share/texmf-texlive/tex/latex/graphics/graphics.sty
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-texlive/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/etc/texmf/tex/latex/config/graphics.cfg
+File: graphics.cfg 2009/08/28 v1.8 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+(/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
+File: pdftex.def 2009/08/25 v0.04m Graphics/color for pdfTeX
+\Gread@gobject=\count87
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+(/usr/share/texmf-texlive/tex/latex/subfig/subfig.sty
+Package: subfig 2005/06/28 ver: 1.3 subfig package
+
+(/usr/share/texmf-texlive/tex/latex/caption/caption.sty
+Package: caption 2009/10/09 v3.1k Customizing captions (AR)
+
+(/usr/share/texmf-texlive/tex/latex/caption/caption3.sty
+Package: caption3 2009/10/09 v3.1k caption3 kernel (AR)
+\captionmargin=\dimen105
+\captionmargin@=\dimen106
+\captionwidth=\dimen107
+\caption@indent=\dimen108
+\caption@parindent=\dimen109
+\caption@hangindent=\dimen110
+)
+\c@ContinuedFloat=\count88
+)
+\c@KVtest=\count89
+\sf@farskip=\skip43
+\sf@captopadj=\dimen111
+\sf@capskip=\skip44
+\sf@nearskip=\skip45
+\c@subfigure=\count90
+\c@subfigure@save=\count91
+\c@lofdepth=\count92
+\c@subtable=\count93
+\c@subtable@save=\count94
+\c@lotdepth=\count95
+\sf@top=\skip46
+\sf@bottom=\skip47
 ) (./writeup.aux)
 \openout1 = `writeup.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 2.
-LaTeX Font Info:    ... okay on input line 2.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 2.
-LaTeX Font Info:    ... okay on input line 2.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 2.
-LaTeX Font Info:    ... okay on input line 2.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 2.
-LaTeX Font Info:    ... okay on input line 2.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 2.
-LaTeX Font Info:    ... okay on input line 2.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 2.
-LaTeX Font Info:    ... okay on input line 2.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 5.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 5.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 5.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
+LaTeX Font Info:    ... okay on input line 7.
 
-Underfull \hbox (badness 10000) in paragraph at lines 10--12
+(/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count96
+\scratchdimen=\dimen112
+\scratchbox=\box26
+\nofMPsegments=\count97
+\nofMParguments=\count98
+\everyMPshowfont=\toks15
+\MPscratchCnt=\count99
+\MPscratchDim=\dimen113
+\MPnumerator=\count100
+\everyMPtoPDFconversion=\toks16
+)
+Package caption Info: Begin \AtBeginDocument code.
+Package caption3 Info: subfig package 1.2 or 1.3 is loaded.
+LaTeX Info: Redefining \subref on input line 7.
+Package caption Info: End \AtBeginDocument code.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 10.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 10.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 10.
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--17
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 13--17
+Underfull \hbox (badness 10000) in paragraph at lines 25--29
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 18--25
+Underfull \hbox (badness 10000) in paragraph at lines 30--37
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 26--31
+Underfull \hbox (badness 10000) in paragraph at lines 38--43
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 44--54
 
  []
 
 [1
 
-] [2] (./writeup.aux) ) 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+<DTdrawing.pdf, id=11, 796.9775pt x 597.23125pt>
+File: DTdrawing.pdf Graphic file (type pdf)
+ <use DTdrawing.pdf>
+Overfull \hbox (1.34999pt too wide) in paragraph at lines 55--74
+[]
+ []
+
+[2 <./DTdrawing.pdf>] <epsOnAi_hyper.png, id=28, 586.8324pt x 442.2924pt>
+File: epsOnAi_hyper.png Graphic file (type png)
+
+<use epsOnAi_hyper.png>
+Overfull \hbox (50.77988pt too wide) in paragraph at lines 97--98
+[][] 
+ []
+
+<knnOnAi_hyper.png, id=30, 586.8324pt x 442.2924pt>
+File: knnOnAi_hyper.png Graphic file (type png)
+ <use knnOnAi_hyper.png>
+Overfull \hbox (50.77988pt too wide) in paragraph at lines 101--102
+[][] 
+ []
+
+<knnOnAI.png, id=31, 586.8324pt x 442.2924pt>
+File: knnOnAI.png Graphic file (type png)
+ <use knnOnAI.png>
+Overfull \hbox (50.77988pt too wide) in paragraph at lines 105--106
+[][] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[3 <./epsOnAi_hyper.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 112--120
+
+ []
+
+[4 <./knnOnAi_hyper.png>] [5 <./knnOnAI.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 152--154
+
+ []
+
+[6] (./writeup.aux) ) 
 Here is how much of TeX's memory you used:
- 234 strings out of 495062
- 2503 string characters out of 1182644
- 50189 words of memory out of 3000000
- 3485 multiletter control sequences out of 15000+50000
+ 2017 strings out of 495061
+ 30717 string characters out of 1182621
+ 93457 words of memory out of 3000000
+ 5226 multiletter control sequences out of 15000+50000
  8668 words of font info for 31 fonts, out of 3000000 for 9000
  28 hyphenation exceptions out of 8191
- 21i,6n,19p,161b,187s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 44i,7n,42p,203b,249s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
+mbx10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb><
+/usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/t
+exmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive
+/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1
+/public/amsfonts/cm/cmss10.pfb></usr/share/texmf-texlive/fonts/type1/public/ams
+fonts/cm/cmtt10.pfb>
+Output written on writeup.pdf (6 pages, 206615 bytes).
+PDF statistics:
+ 69 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
-Output written on writeup.dvi (2 pages, 4640 bytes).

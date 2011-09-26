@@ -77,9 +77,10 @@ class Perceptron(BinaryClassifier):
             self.numUpd  = self.numUpd  + 1
 
             # perform an update
-            self.weights = self.weights + (Y * X)
+            self.weights = self.weights + Y*X
 
             self.bias    = self.bias + Y
+
 
 
     def nextIteration(self):
