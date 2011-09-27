@@ -17,8 +17,8 @@ accuracy?}\\
 
 This computation is equivalent to computing classification accuracy
 because it first compares the ground truth classifications with the
-predictions, and where they are equal yields ones, otherwise
-zeros. The mean of this array is the number of correct divided by the
+predictions, and where they are equal this operation yields ones, otherwise
+zeros. The mean of this array is the number of ones, correct classifcations, divided by the
 total, which is equivalent to classification accuracy.
 
 \subsection{Decision Tree}
@@ -30,7 +30,7 @@ increasing?}\\
 Training accuracy tends to go down because we're training the
 algorithm on that data with answers. The design of the tree is s.t. we
 minimize the training error. However the test accuracy is not
-monotonically increasing because there maybe examples that the
+monotonically increasing because there may be examples that the
 algorithm is not ready for. In another words the more the accuracy
 goes up on the training set the more algorithm will over-fit on that
 specific training set and thus not generalize well to the unseen test set.\\
@@ -94,15 +94,15 @@ lower as well. That is an indication of underfitting.\\
 The learning curve for KNN with K=5 is figure 3.
 \begin{figure}[h!]
   \caption{epsilon on varying values of eps}
- \includegraphics[scale=0.7]{epsOnAi_hyper.png}
+ \includegraphics[scale=0.5]{epsOnAi_hyper.png}
 \end{figure}
 \begin{figure}[h!]
   \caption{KNN on varying values of K}
-   \includegraphics[scale=0.7]{knnOnAi_hyper.png}
+   \includegraphics[scale=0.5]{knnOnAi_hyper.png}
 \end{figure}
 \begin{figure}[h!]
   \caption{Learning curve of KNN with K=5}
-\includegraphics[scale=0.7]{knnOnAI.png} 
+\includegraphics[scale=0.5]{knnOnAI.png} 
 \end{figure}
 
 
@@ -149,15 +149,14 @@ may not continue in the program long enough to take 421. The 5 most positive
 courses are mostly graduate level courses, which makes it more likely
 that they have taken AI.
 
-It is difficult to interpret large weights as ``most indicative'' because there may exist a groups of more indicative
+It is difficult to interpret large weights as ``most indicative'' because there may exist a group of more indicative
 features which have distributed weights among themselves.\\
 
 The top 4 levels of the decision tree contain the 4 most positive weights
 from the perceptron ('databse management, 'introduction to information
 technology','advanced computer graphics', 'computer processing of
-pictorial information') where if the students took those courses the
-decision tree's prediction agrees with the perceptron. However, there
-are numerous courses used in the decision tree that do not appear in
-the most positive and negative weights. 
+pictorial information') where the decision tree's prediction agrees 
+with the perceptron. However, there are numerous courses used in the 
+decision tree that do not appear in the most positive and negative weights. 
       
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.9.14)  26 SEP 2011 11:09
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2011.9.14)  26 SEP 2011 15:28
 entering extended mode
  %&-line parsing enabled.
 **writeup.tex
@@ -155,25 +155,13 @@ Overfull \hbox (1.34999pt too wide) in paragraph at lines 55--74
 [2 <./DTdrawing.pdf>] <epsOnAi_hyper.png, id=28, 586.8324pt x 442.2924pt>
 File: epsOnAi_hyper.png Graphic file (type png)
 
-<use epsOnAi_hyper.png>
-Overfull \hbox (50.77988pt too wide) in paragraph at lines 97--98
-[][] 
- []
-
-<knnOnAi_hyper.png, id=30, 586.8324pt x 442.2924pt>
+<use epsOnAi_hyper.png> <knnOnAi_hyper.png, id=30, 586.8324pt x 442.2924pt>
 File: knnOnAi_hyper.png Graphic file (type png)
- <use knnOnAi_hyper.png>
-Overfull \hbox (50.77988pt too wide) in paragraph at lines 101--102
-[][] 
- []
 
-<knnOnAI.png, id=31, 586.8324pt x 442.2924pt>
+<use knnOnAi_hyper.png> <knnOnAI.png, id=31, 586.8324pt x 442.2924pt>
 File: knnOnAI.png Graphic file (type png)
- <use knnOnAI.png>
-Overfull \hbox (50.77988pt too wide) in paragraph at lines 105--106
-[][] 
- []
 
+<use knnOnAI.png>
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
@@ -185,12 +173,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 112--120
 
  []
 
-[4 <./knnOnAi_hyper.png>] [5 <./knnOnAI.png>]
+[4 <./knnOnAi_hyper.png> <./knnOnAI.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 152--154
 
  []
 
-[6] (./writeup.aux) ) 
+[5] (./writeup.aux) ) 
 Here is how much of TeX's memory you used:
  2017 strings out of 495061
  30717 string characters out of 1182621
@@ -206,9 +194,9 @@ exmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-texlive
 /fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1
 /public/amsfonts/cm/cmss10.pfb></usr/share/texmf-texlive/fonts/type1/public/ams
 fonts/cm/cmtt10.pfb>
-Output written on writeup.pdf (6 pages, 206734 bytes).
+Output written on writeup.pdf (5 pages, 206048 bytes).
 PDF statistics:
- 69 PDF objects out of 1000 (max. 8388607)
+ 66 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 
